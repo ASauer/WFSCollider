@@ -1,0 +1,3 @@
+[submodule "mac/Standalone Resources/SCClassLibrary/Extensions/WFS Library"]
+	path = mac/Standalone Resources/SCClassLibrary/Extensions/WFS Library
+	url = git-GameOfLife@pl3.projectlocker.com:WFS.git
