@@ -138,7 +138,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>SCcube</string>
+	<string>wfsicon5</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.sourceforge.supercollider</string>
 	<key>CFBundleInfoDictionaryVersion</key>

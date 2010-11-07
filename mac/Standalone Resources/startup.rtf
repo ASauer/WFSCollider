@@ -1,0 +1,62 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf440
+{\fonttbl\f0\fnil\fcharset77 Monaco;}
+{\colortbl;\red255\green255\blue255;\red191\green0\blue0;\red0\green0\blue191;\red96\green96\blue96;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f0\fs18 \cf2 /*  MASTER  */\cf0 \
+\
+\
+ \cf3 WFSConfiguration\cf0 .default = \cf3 WFSConfiguration\cf0 .rect4(  40, 56, 0.165, 8.45, 10.40 ); \cf2 // scheltema\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 \
+\{\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 var\cf0  file, array;\
+if( \cf3 File\cf0 .exists( \cf4 "/wfs_configuration.txt"\cf0  ) )\
+	\{\
+	file = \cf3 File\cf0 (\cf4 "/wfs_configuration.txt"\cf0 ,\cf4 "r"\cf0 );\
+\pard\pardeftab560\ql\qnatural
+\cf0 	array = file.readAllString.interpret;\
+	file.close;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf0 	\cf3 WFSConfiguration\cf0 .default = \
+		\cf3 WFSConfiguration\cf0 .rect4( array[0], array[1], 0.165, array[2], array[3] );\
+	\}\
+\}.value;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\
+\
+\
+m = \cf3 WFS\cf0 .startupFull;\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 WFSTransport\cf0 .autoReturnToZero = \cf3 true\cf0 ;  \cf2 // performance mode\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf2 //WFSTransport.autoSwitchToNext = true;\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 WFSTransport\cf0 .autoSwitchToNext = \cf3 false\cf0 ;\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\cf2 // adjust the Post Window\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+\cf3 Document\cf0 .listener\
+		.title_(\cf4 "Post Window"\cf0 )\
+		.background_( \cf3 Color\cf0 .gray(0.9).alpha_(0.95) )\
+		.bounds_( \cf3 Rect\cf0 (10, 490, 540, 250) )\
+		.alwaysOnTop_(\cf3 false\cf0 );\
+		\
+		\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf2 //WFSConfiguration.default = WFSConfiguration.rect2;\cf0 \
+\cf2 //WFSConfiguration.default = WFSConfiguration.rect2( 40, 56, 0.165, 8.17, 11.235 ); // gent\cf0 \
+\cf2 //WFSConfiguration.default = WFSConfiguration.rect2(  40, 56, 0.165, 7.8, 11.11 ); // den bosch\cf0 \
+\cf2 //WFSConfiguration.default = WFSConfiguration.rect2(  40, 56, 0.165, 7.82, 10.4 ); // scheltema\cf0 \
+\cf2 // WFSConfiguration.default = WFSConfiguration.rect2(  40, 48, 0.165, 6.6, 9.7 ); // scheltema\cf0 \
+\cf2 // WFSConfiguration.default = WFSConfiguration.rect2( 4 * 8, 8 * 8, 0.164, 6.6, 13.4 ); // muzgeb\cf0 \
+\cf2 //WFSConfiguration.default = WFSConfiguration.rect2( 8 * 8, 4 * 8, 0.164, 13.4, 6.6 ); // muzgeb 90*\cf0 \
+\cf2 // WFSConfiguration.default = WFSConfiguration.rect2(  40, 56, 0.165, 8.05, 10.7 ); // scheltema\cf0 \
+\
+}

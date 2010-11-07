@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		09D02CCA12871188008647CB /* scsynth in Resources */ = {isa = PBXBuildFile; fileRef = 09D02CC912871188008647CB /* scsynth */; };
 		172CD77D0DD7D2AE0089A2F4 /* SC_LanguageClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9493110C0C1921F90018AB50 /* SC_LanguageClient.cpp */; };
 		172CD77E0DD7D2B10089A2F4 /* SC_TerminalClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9493110E0C1921F90018AB50 /* SC_TerminalClient.cpp */; };
 		172E7CCC0E9C29EE00925A8E /* SCImage.M in Sources */ = {isa = PBXBuildFile; fileRef = 172E7CB90E9C251A00925A8E /* SCImage.M */; };
@@ -414,6 +415,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09D02CC912871188008647CB /* scsynth */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = scsynth; path = ../common/build/scsynth; sourceTree = SOURCE_ROOT; };
 		172E7CB80E9C24EB00925A8E /* SCImage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SCImage.h; sourceTree = "<group>"; };
 		172E7CB90E9C251A00925A8E /* SCImage.M */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = SCImage.M; sourceTree = "<group>"; };
 		370283DB0FCABD0600A9BDC9 /* scd.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = scd.icns; sourceTree = "<group>"; };
@@ -462,7 +464,7 @@
 		940739A50CBB6E9C00EAA155 /* HTMLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = HTMLRenderer.m; sourceTree = "<group>"; };
 		9415B1730B2B5CD700C87737 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		942C390F0C1B40F700360A35 /* sndfile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = sndfile.h; path = ../common/include/libsndfile/sndfile.h; sourceTree = SOURCE_ROOT; };
-		94442CC80C2C8AE40050BF9F /* Standalone Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Standalone Template.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94442CC80C2C8AE40050BF9F /* WFSMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFSMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9456F5BC0C19E25900634E4D /* Synth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Synth.xcodeproj; sourceTree = "<group>"; };
 		9456F67F0C19E6E500634E4D /* SC_AlsaMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SC_AlsaMIDI.cpp; sourceTree = "<group>"; };
 		9456F6800C19E6E500634E4D /* SC_ComPort.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SC_ComPort.cpp; sourceTree = "<group>"; };
@@ -699,13 +701,7 @@
 		94DFDB510DD95B8700EB46BA /* sc_popen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sc_popen.h; sourceTree = "<group>"; };
 		94E114FE0B163B040033537C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		94F5FC7E0C1E6F7F005CDF9F /* libscsynth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libscsynth.a; path = build/libscsynth.a; sourceTree = "<group>"; };
-		F31B262E0DE604180003691B /* Info copy 12.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 12.plist"; sourceTree = "<group>"; };
-		F338A41A0D0F06C000ACFF58 /* Info copy 4.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 4.plist"; sourceTree = "<group>"; };
-		F338A4A30D0F10A100ACFF58 /* Info copy 5.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 5.plist"; sourceTree = "<group>"; };
-		F345DCE30E7ED5C500CFAB80 /* Info copy 13.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 13.plist"; sourceTree = "<group>"; };
-		F3A435FA0E89AD2900551B22 /* Info copy 14.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 14.plist"; sourceTree = "<group>"; };
 		F3B0038D1051D15C00929F44 /* scUBlibsndfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = scUBlibsndfile.a; path = lib/scUBlibsndfile.a; sourceTree = "<group>"; };
-		F3C4BD1A0E93CD5000AC6675 /* Info copy 15.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info copy 15.plist"; sourceTree = "<group>"; };
 		F50D069502E6A1C601CA2799 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		F50D069602E6A1C601CA2799 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		F50D069702E6A1C601CA2799 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
@@ -1211,6 +1207,7 @@
 		949318000C192C120018AB50 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09D02CC912871188008647CB /* scsynth */,
 				370283DB0FCABD0600A9BDC9 /* scd.icns */,
 				370283DC0FCABD0600A9BDC9 /* rtfd.icns */,
 				370283DD0FCABD0600A9BDC9 /* quark.icns */,
@@ -1229,12 +1226,6 @@
 				9493180F0C192C120018AB50 /* GoToLinePanel.nib */,
 				949318100C192C120018AB50 /* Info.plist */,
 				949318170C192C120018AB50 /* SCcube.icns */,
-				F338A41A0D0F06C000ACFF58 /* Info copy 4.plist */,
-				F338A4A30D0F10A100ACFF58 /* Info copy 5.plist */,
-				F31B262E0DE604180003691B /* Info copy 12.plist */,
-				F345DCE30E7ED5C500CFAB80 /* Info copy 13.plist */,
-				F3A435FA0E89AD2900551B22 /* Info copy 14.plist */,
-				F3C4BD1A0E93CD5000AC6675 /* Info copy 15.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1258,7 +1249,7 @@
 			children = (
 				94B6ABC00AF45D2900E478BB /* SuperCollider.app */,
 				949314DD0C192A550018AB50 /* sclang */,
-				94442CC80C2C8AE40050BF9F /* Standalone Template.app */,
+				94442CC80C2C8AE40050BF9F /* WFSMaster.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1291,9 +1282,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94442C500C2C8AE40050BF9F /* Standalone Template */ = {
+		94442C500C2C8AE40050BF9F /* WFSMaster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "Standalone Template" */;
+			buildConfigurationList = 94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSMaster" */;
 			buildPhases = (
 				94442C530C2C8AE40050BF9F /* Resources */,
 				94442C610C2C8AE40050BF9F /* Sources */,
@@ -1305,9 +1296,9 @@
 			dependencies = (
 				94442C510C2C8AE40050BF9F /* PBXTargetDependency */,
 			);
-			name = "Standalone Template";
+			name = WFSMaster;
 			productName = test2;
-			productReference = 94442CC80C2C8AE40050BF9F /* Standalone Template.app */;
+			productReference = 94442CC80C2C8AE40050BF9F /* WFSMaster.app */;
 			productType = "com.apple.product-type.application";
 		};
 		949314DC0C192A550018AB50 /* sclang */ = {
@@ -1367,7 +1358,7 @@
 				F5B7410802E9534D01CA2799 /* All */,
 				94B6ABBF0AF45D2900E478BB /* SuperCollider */,
 				949314DC0C192A550018AB50 /* sclang */,
-				94442C500C2C8AE40050BF9F /* Standalone Template */,
+				94442C500C2C8AE40050BF9F /* WFSMaster */,
 			);
 		};
 /* End PBXProject section */
@@ -1423,6 +1414,7 @@
 				6A0CC1BD0D3D44730080C454 /* LICENSE.txt in Resources */,
 				6A0CC26A0D3D5F1D0080C454 /* SMLRegularExpressionHelp.nib in Resources */,
 				FE0DB9890F8A0A5A005B2DE4 /* Localizable.strings in Resources */,
+				09D02CCA12871188008647CB /* scsynth in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1468,7 +1460,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# We use rsync instead of cp becuase Xcode doesn't do recursive dependency tracking \n# and rsync (which does quick modification date comparisons) will be faster.\n# It also excludes .svn dirs during the copy and deletes files not found in the\n# origin.\n\nCOPY=\"rsync -r --exclude='.svn'\"\nFILES=\" \"$BUILT_PRODUCTS_DIR/SCClassLibrary\" \"$BUILT_PRODUCTS_DIR/plugins\" \"\n\nif [ -d \"$TARGET_NAME Resources\" ]; then\n\t$COPY $FILES \"$TARGET_NAME Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"$TARGET_NAME Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nelse\n\t$COPY $FILES \"Standalone Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"Standalone Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\nfi";
+			shellScript = "\n# We use rsync instead of cp becuase Xcode doesn't do recursive dependency tracking \n# and rsync (which does quick modification date comparisons) will be faster.\n# It also excludes .svn dirs during the copy and deletes files not found in the\n# origin.\n\nCOPY=\"rsync -r --links --exclude='.svn'\"\nFILES=\" \"$BUILT_PRODUCTS_DIR/SCClassLibrary\" \"$BUILT_PRODUCTS_DIR/plugins\" \"\n\nif [ -d \"$TARGET_NAME Resources\" ]; then\n\t$COPY $FILES \"$TARGET_NAME Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"$TARGET_NAME Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nelse\n\t$COPY $FILES \"Standalone Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"Standalone Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2362,7 +2354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
 		};
-		94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "Standalone Template" */ = {
+		94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSMaster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94442CC60C2C8AE40050BF9F /* Development */,
