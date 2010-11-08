@@ -13,6 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				09704A67128800CB004ACA5B /* PBXTargetDependency */,
 				94931A320C1934230018AB50 /* PBXTargetDependency */,
 				94931A300C1934230018AB50 /* PBXTargetDependency */,
 				94931A2E0C1934230018AB50 /* PBXTargetDependency */,
@@ -46,6 +47,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		09704A611288005D004ACA5B /* WFSUgens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09704A601288005D004ACA5B /* WFSUgens.cpp */; };
 		372EFD210CFAFB3A00265BE0 /* Onsets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372EFD1E0CFAFB3A00265BE0 /* Onsets.cpp */; };
 		372EFD220CFAFB3A00265BE0 /* onsetsds.c in Sources */ = {isa = PBXBuildFile; fileRef = 372EFD1F0CFAFB3A00265BE0 /* onsetsds.c */; };
 		376B688C0D1ACFE90027D452 /* ML_SpecStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 376B688B0D1ACFE90027D452 /* ML_SpecStats.cpp */; };
@@ -120,6 +122,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		09704A66128800CB004ACA5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F50D04F702E68E8201CA2799 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09704A521287FFA4004ACA5B /* WFSUGens */;
+			remoteInfo = WFSUGens;
+		};
 		3772616B0CF6210B0037407D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F50D04F702E68E8201CA2799 /* Project object */;
@@ -305,6 +314,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09704A5B1287FFA4004ACA5B /* WFSUGens.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; includeInIndex = 0; path = WFSUGens.scx; sourceTree = BUILT_PRODUCTS_DIR; };
+		09704A601288005D004ACA5B /* WFSUgens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WFSUgens.cpp; sourceTree = "<group>"; };
+		09704A75128801E5004ACA5B /* WFSUGens.scx */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; path = WFSUGens.scx; sourceTree = "<group>"; };
 		372EFD1E0CFAFB3A00265BE0 /* Onsets.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Onsets.cpp; path = ../../Source/plugins/Onsets.cpp; sourceTree = "<group>"; };
 		372EFD1F0CFAFB3A00265BE0 /* onsetsds.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = onsetsds.c; path = ../../Source/plugins/onsetsds.c; sourceTree = "<group>"; };
 		372EFD200CFAFB3A00265BE0 /* onsetsds.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = onsetsds.h; path = ../../Source/plugins/onsetsds.h; sourceTree = "<group>"; };
@@ -419,6 +431,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		09704A551287FFA4004ACA5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37E291930E2CEBE400CB854E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,6 +723,7 @@
 		F50D05D302E69B6B01CA2799 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
+				09704A601288005D004ACA5B /* WFSUgens.cpp */,
 				FE25830C0C2C13E400307453 /* TestUGens.cpp */,
 				376B688B0D1ACFE90027D452 /* ML_SpecStats.cpp */,
 				464348BF0EAA7C2F008F1E42 /* PartitionedConvolution.cpp */,
@@ -758,6 +778,7 @@
 		F50D060302E69C2101CA2799 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
+				09704A75128801E5004ACA5B /* WFSUGens.scx */,
 				9451F5E20C1CAC250037197F /* OSCUGens.scx */,
 				9451F5E30C1CAC250037197F /* BinaryOpUGens.scx */,
 				9451F5E40C1CAC250037197F /* NoiseUGens.scx */,
@@ -784,6 +805,7 @@
 				F3F479180D03BCB0001A470F /* GrainUGens.scx */,
 				F3F479230D03BCDB001A470F /* ReverbUGens.scx */,
 				37E291990E2CEBE400CB854E /* KeyboardUGens.scx */,
+				09704A5B1287FFA4004ACA5B /* WFSUGens.scx */,
 			);
 			name = plugins;
 			path = ../common/build/plugins;
@@ -840,6 +862,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		09704A521287FFA4004ACA5B /* WFSUGens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09704A571287FFA4004ACA5B /* Build configuration list for PBXNativeTarget "WFSUGens" */;
+			buildPhases = (
+				09704A531287FFA4004ACA5B /* Sources */,
+				09704A551287FFA4004ACA5B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WFSUGens;
+			productName = FFT_UGens;
+			productReference = 09704A5B1287FFA4004ACA5B /* WFSUGens.scx */;
+			productType = "com.apple.product-type.objfile";
+		};
 		37E291900E2CEBE400CB854E /* KeyboardUGens */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37E291960E2CEBE400CB854E /* Build configuration list for PBXNativeTarget "KeyboardUGens" */;
@@ -1296,11 +1334,20 @@
 				F3F479100D03BCB0001A470F /* GrainUGens */,
 				F3F4791C0D03BCDB001A470F /* ReverbUGens */,
 				37E291900E2CEBE400CB854E /* KeyboardUGens */,
+				09704A521287FFA4004ACA5B /* WFSUGens */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		09704A531287FFA4004ACA5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09704A611288005D004ACA5B /* WFSUgens.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37E291910E2CEBE400CB854E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1534,6 +1581,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		09704A67128800CB004ACA5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09704A521287FFA4004ACA5B /* WFSUGens */;
+			targetProxy = 09704A66128800CB004ACA5B /* PBXContainerItemProxy */;
+		};
 		3772616C0CF6210B0037407D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 468DABDD0CF1FE1800FA8C88 /* MachineListening */;
@@ -1667,6 +1719,37 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		09704A581287FFA4004ACA5B /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "$(inherited)";
+				PRODUCT_NAME = WFSUGens;
+			};
+			name = Development;
+		};
+		09704A591287FFA4004ACA5B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_VERSION = 4.0;
+				OTHER_CFLAGS = "$(inherited)";
+				PRODUCT_NAME = WFSUGens;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Deployment;
+		};
+		09704A5A1287FFA4004ACA5B /* Deployment32-64 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				OTHER_CFLAGS = "$(inherited)";
+				PRODUCT_NAME = WFSUGens;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = "Deployment32-64";
+		};
 		37E291970E2CEBE400CB854E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2668,6 +2751,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		09704A571287FFA4004ACA5B /* Build configuration list for PBXNativeTarget "WFSUGens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09704A581287FFA4004ACA5B /* Development */,
+				09704A591287FFA4004ACA5B /* Deployment */,
+				09704A5A1287FFA4004ACA5B /* Deployment32-64 */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
+		};
 		37E291960E2CEBE400CB854E /* Build configuration list for PBXNativeTarget "KeyboardUGens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
