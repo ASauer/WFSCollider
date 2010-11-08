@@ -3,4 +3,4 @@
 	url = git-GameOfLife@pl3.projectlocker.com:WFS.git
 [submodule "mac/Standalone Resources/quarks"]
 	path = mac/Standalone Resources/quarks
-	url = github.com/miguel-negrao/Quarks.git
+	url = git://github.com/miguel-negrao/Quarks.git
