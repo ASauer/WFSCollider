@@ -7,6 +7,7 @@ common/build/libscsynth.a
 common/build/plugins
 common/build/sclang
 common/build/scsynth
+common/build/*.app/
 
 # scons specific files
 config.log
@@ -15,3 +16,11 @@ scache.conf
 .sconf_temp
 *.os
 *.o
+
+# working files made by packager script
+common/Packager/LinuxExclusions.txt
+common/Packager/SuperCollider*.tar.gz
+common/Packager/SuperCollider*.dmg
+
+#build directory
+/build

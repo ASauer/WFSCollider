@@ -1,5 +1,14 @@
 find_package(Sndfile)
 
+if (APPLE)
+	add_definitions(-DUSE_RENDEZVOUS=1)
+else()
+	find_package(Avahi)
+	if (AVAHI_FOUND)
+		add_definitions(-DUSE_RENDEZVOUS=1)
+	endif()
+endif()
+
 # Here we work out which audio API to use, from system type and/or user option.
 string(TOLOWER "$ENV{AUDIOAPI}" AUDIOAPI)
 if(AUDIOAPI STREQUAL "")
@@ -83,6 +92,12 @@ if(CURL)
 	endif()
 endif()
 
+if(AVAHI_FOUND)
+	add_definitions("-DHAVE_AVAHI=1")
+	include_directories(${AVAHI_INCLUDE_DIRS})
+	target_link_libraries(libscsynth ${AVAHI_LIBRARIES})
+endif()
+
 if(SNDFILE_FOUND)
 	include_directories(${SNDFILE_INCLUDE_DIR})
 	target_link_libraries(libscsynth ${SNDFILE_LIBRARIES})
@@ -108,7 +123,7 @@ set_property(TARGET libscsynth
 			 PROPERTY OUTPUT_NAME scsynth)
 
 add_executable(scsynth scsynth_main.cpp)
-target_link_libraries(scsynth libscsynth)
+target_link_libraries(scsynth libscsynth ${PTHREADS_LIBRARY})
 
 
 #TODO allow apple users to install to fhs-ish path if INSTALL_FHS option is enabled
