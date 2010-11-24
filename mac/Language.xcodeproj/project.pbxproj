@@ -464,7 +464,7 @@
 		940739A50CBB6E9C00EAA155 /* HTMLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = HTMLRenderer.m; sourceTree = "<group>"; };
 		9415B1730B2B5CD700C87737 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		942C390F0C1B40F700360A35 /* sndfile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = sndfile.h; path = ../common/include/libsndfile/sndfile.h; sourceTree = SOURCE_ROOT; };
-		94442CC80C2C8AE40050BF9F /* WFSMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFSMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94442CC80C2C8AE40050BF9F /* WFSCollider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WFSCollider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9456F5BC0C19E25900634E4D /* Synth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Synth.xcodeproj; sourceTree = "<group>"; };
 		9456F67F0C19E6E500634E4D /* SC_AlsaMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SC_AlsaMIDI.cpp; sourceTree = "<group>"; };
 		9456F6800C19E6E500634E4D /* SC_ComPort.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SC_ComPort.cpp; sourceTree = "<group>"; };
@@ -1249,7 +1249,7 @@
 			children = (
 				94B6ABC00AF45D2900E478BB /* SuperCollider.app */,
 				949314DD0C192A550018AB50 /* sclang */,
-				94442CC80C2C8AE40050BF9F /* WFSMaster.app */,
+				94442CC80C2C8AE40050BF9F /* WFSCollider.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1282,9 +1282,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94442C500C2C8AE40050BF9F /* WFSMaster */ = {
+		94442C500C2C8AE40050BF9F /* WFSCollider */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSMaster" */;
+			buildConfigurationList = 94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSCollider" */;
 			buildPhases = (
 				94442C530C2C8AE40050BF9F /* Resources */,
 				94442C610C2C8AE40050BF9F /* Sources */,
@@ -1296,9 +1296,9 @@
 			dependencies = (
 				94442C510C2C8AE40050BF9F /* PBXTargetDependency */,
 			);
-			name = WFSMaster;
+			name = WFSCollider;
 			productName = test2;
-			productReference = 94442CC80C2C8AE40050BF9F /* WFSMaster.app */;
+			productReference = 94442CC80C2C8AE40050BF9F /* WFSCollider.app */;
 			productType = "com.apple.product-type.application";
 		};
 		949314DC0C192A550018AB50 /* sclang */ = {
@@ -1365,7 +1365,7 @@
 				F5B7410802E9534D01CA2799 /* All */,
 				94B6ABBF0AF45D2900E478BB /* SuperCollider */,
 				949314DC0C192A550018AB50 /* sclang */,
-				94442C500C2C8AE40050BF9F /* WFSMaster */,
+				94442C500C2C8AE40050BF9F /* WFSCollider */,
 			);
 		};
 /* End PBXProject section */
@@ -2339,7 +2339,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
 		};
-		94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSMaster" */ = {
+		94442CC50C2C8AE40050BF9F /* Build configuration list for PBXNativeTarget "WFSCollider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94442CC60C2C8AE40050BF9F /* Development */,
