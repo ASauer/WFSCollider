@@ -1343,7 +1343,6 @@
 			isa = PBXProject;
 			buildConfigurationList = 88332483090AC12E00A4A7E4 /* Build configuration list for PBXProject "Language" */;
 			compatibilityVersion = "Xcode 2.4";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1467,7 +1466,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\n# We use rsync instead of cp becuase Xcode doesn't do recursive dependency tracking \n# and rsync (which does quick modification date comparisons) will be faster.\n# It also excludes .svn dirs during the copy and deletes files not found in the\n# origin.\n\nCOPY=\"rsync -r --links --exclude='.svn'\"\nFILES=\" \"$BUILT_PRODUCTS_DIR/SCClassLibrary\" \"$BUILT_PRODUCTS_DIR/plugins\" \"\n\nif [ -d \"$TARGET_NAME Resources\" ]; then\n\t$COPY $FILES \"$TARGET_NAME Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"$TARGET_NAME Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nelse\n\t$COPY $FILES \"Standalone Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"Standalone Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\nfi";
+			shellScript = "\n# We use rsync instead of cp becuase Xcode doesn't do recursive dependency tracking \n# and rsync (which does quick modification date comparisons) will be faster.\n# It also excludes .svn dirs during the copy and deletes files not found in the\n# origin.\n\nCOPY=\"rsync -r --links --exclude='.svn'\"\nFILES=\" \"$BUILT_PRODUCTS_DIR/SCClassLibrary\" \"$BUILT_PRODUCTS_DIR/plugins\" \"\n\nif [ -d \"$TARGET_NAME Resources\" ]; then\n\t$COPY $FILES \"$TARGET_NAME Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"$TARGET_NAME Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nelse\n\t$COPY $FILES \"Standalone Resources\"/ \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\t$COPY \"Standalone Resources\"/SCClassLibrary \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\n\nfi\n\nmkdir \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarksTemp\nmv \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarks/NetLib \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarksTemp\nmv \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarks/wslib \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarksTemp\nmv \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarks/XML \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarksTemp\nrm -R \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarks\nmv \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarksTemp \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/quarks\nrm -R \"$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/SCClassLibrary/Extensions/WFS\\ Library/.git";
 		};
 /* End PBXShellScriptBuildPhase section */
 
