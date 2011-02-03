@@ -211,6 +211,8 @@ Server : Model {
 	var <volume;
 
 	var <pid;
+	var <blockCount=0;
+	var <sampleStartTime=0;
 
 	*default_ { |server|
 		default = server; // sync with s?
@@ -388,6 +390,7 @@ Server : Model {
 					if (serverRunning.not) {
 
 						ServerQuit.run(this);
+						sampleStartTime = 0;
 
 						AppClock.sched(5.0, {
 							// still down after 5 seconds, assume server is really dead
@@ -401,6 +404,7 @@ Server : Model {
 						})
 
 					}{
+						this.getSampleStartTime;
 						ServerBoot.run(this);
 					};
 					{ this.changed(\serverRunning); }.defer;
@@ -487,7 +491,7 @@ Server : Model {
 				};
 				alive = true;
 				#cmd, one, numUGens, numSynths, numGroups, numSynthDefs,
-					avgCPU, peakCPU, sampleRate, actualSampleRate = msg;
+					avgCPU, peakCPU, sampleRate, actualSampleRate, blockCount = msg;
 				{
 					this.serverRunning_(true);
 					this.changed(\counts);

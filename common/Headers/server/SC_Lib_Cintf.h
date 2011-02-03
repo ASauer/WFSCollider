@@ -131,7 +131,8 @@ enum {
 	cmd_n_order = 62,
 
 	cmd_p_new = 63,
-	NUMBER_OF_COMMANDS = 64
+	cmd_sampleStartTime = 64,
+	NUMBER_OF_COMMANDS = 65
 };
 
 extern SC_LibCmd* gCmdArray[NUMBER_OF_COMMANDS];
