@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1038.32">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Verdana; color: #000101}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; color: #000101}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; color: #000101; min-height: 15.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; min-height: 15.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #e10000}
+    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #e10000; min-height: 12.0px}
+    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana}
+    span.s1 {color: #3300d3}
+    span.s2 {color: #000000}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>WFSCollider</b></p>
+<p class="p2">by W. Snoei, R. Ganchrow, J. Truetzler and M. Negrão</p>
+<p class="p3"><br></p>
+<p class="p2">WFS = <i>Wave Field Synthesis</i></p>
+<p class="p3"><br></p>
+<p class="p2">When using the WFSCollider application the system will start up automatically.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2">It will show a window containing one Server view called "master" and some knobs.</p>
+<p class="p2">The master server is the server controlling the WFS system. When no WFS system is around ( "single" mode ) this will also run the engine for headphone playback.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2">The "K" button kills all running server applications, and should be used when the server fails to start. The "F" button frees all running synths on all servers in the system.<span class="Apple-converted-space"> </span></p>
+<p class="p2">The "R" button opens a ServerRecordWindow; record things playing on the master server to disk.</p>
+<p class="p3"><br></p>
+<p class="p2">Most of the commands are present in the top menu bar items.</p>
+<p class="p3"><br></p>
+<p class="p2">Note: when using the system as library in a normal supercollider installation to start up the system run (i.e. put the cursor behind the line and hit enter - not return):</p>
+<p class="p3"><br></p>
+<p class="p4"><span class="s1">WFS</span>.startup;</p>
+<p class="p5"><br></p>
+<p class="p2"><b>Path Editor</b></p>
+<p class="p2">The path editor is designed to create a bank of spatial paths in many different ways. Paths can be drawn, generated, scaled, rotated, morphed and more. Each path has it's own name, which should be unique within one session. These paths should be seen as a global "bank" of usable paths. They can be copied to your scores, and sent back from them to edit them. The paths in the Score editor are always copies of the paths in the Path editor.</p>
+<p class="p3"><br></p>
+<p class="p2">At the bottom of the window the "time editor" can be found, representing a time line for all points. The colors of the points there correspond with those in the path display section above. The y-axis (height) of the graph shows the speed of each segment between points. When points are moved more towards each other and time difference between them stays the same, the speed will go down. Under the time display there are a number of time-only transform options, amongst which several ways to control the overall average speed of the path. The 'animate' button at the top of the window animates the currently shown path.</p>
+<p class="p3"><br></p>
+<p class="p2">Above the time editor, a "point editor" can be found, which gives information about one point in the path. When pressing "edit" here the point editor will unlock and points can be edited to the millimeter.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2">The "plot smooth.." menu has options for plotting the currently selected path in a special plot window, where it is shown relative to the speaker configuration and with correct interpolation curves. Selecting the "auto" option next to this menu will automatically update the plot window at every change made. However this option will severely slow down the editor's performance.</p>
+<p class="p3"><br></p>
+<p class="p2">When a transformation on a path is done, press "keep changes" to place the transformed version in the Path editor's path bank and reset all transform parameters. Also a new "state" is created in the undo history (under the "keep changes" button), which can be recalled by selecting it in the undo history menu. Please note that "keep changes" does not save to disk, but only to memory. Use the "file-&gt;save.." options to save paths to disk.</p>
+<p class="p3"><br></p>
+<p class="p2">The paths can be saved together in a "path bank file" using the "save.." options. The file format is an open xml-based format which can be easily altered by hand in a text editor. The "open.." option can be used to open existing path bank files, add them to the current set or fully replace the current set (which will be lost when not saved before).<span class="Apple-converted-space">  </span>Score files from the Score Editor can also be opened; the path editor will automatically extract all valid paths from them and tell the user how many were found before importing them.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>SVG files</i></p>
+<p class="p2">The SVG file format is a web standard vector-based graphic format which can be read and written by various graphic applications ( such as Adobe Illustrator ). The path editor can import and export 2 dimensional path data in SVG files (using the "file-&gt;import SVG.." and "file-&gt;export SVG.." options).</p>
+<p class="p2">A few notes:</p>
+<p class="p6">- time data is not read/written; only 2 dimensional path data. On<span class="Apple-converted-space">  </span>import all paths will have a duration of 1 s.</p>
+<p class="p6">- scaling is set to one standard for now: 20px = 1m, center is at<span class="Apple-converted-space">  </span>point (X = 300px,Y = 300px).</p>
+<p class="p6">- at export, the points in a path are saved as smoothly curved<span class="Apple-converted-space">  </span>segments; the way they will also playback on the wfs system.</p>
+<p class="p6">- when importing curved segments the user can choose wether to use<span class="Apple-converted-space">  </span>those curves or only the breakpoints/lines:</p>
+<p class="p6">- lines only: files exported from the path editor will import<span class="Apple-converted-space">  </span>exactly as they were when saved.</p>
+<p class="p6">- curves: curves are calculated and interpolated with 10 points per<span class="Apple-converted-space">  </span>segment.</p>
+<p class="p6">- an exported file from the path editor will also include a graphic<span class="Apple-converted-space">  </span>representation of the speaker configuration (4 yellow lines).</p>
+<p class="p6">- the following types of SVG objects are imported:</p>
+<p class="p6"><span class="Apple-tab-span">	</span>- line, rect, polyline, polygon, path</p>
+<p class="p6">- all other types of svg objects are ignored, specifically:</p>
+<p class="p6"><span class="Apple-tab-span">	</span>- groups ('g' object), circles and any object with id<span class="Apple-converted-space">  </span>"SpeakerConfiguration"</p>
+<p class="p6">- grouped objects will be ignored; only the top layer is used.</p>
+<p class="p6">- export options:</p>
+<p class="p6"><span class="Apple-tab-span">	</span>- styled: will include colored dots at the breakpoints; use this<span class="Apple-converted-space">  </span>for printing etc..</p>
+<p class="p6"><span class="Apple-tab-span">	</span>- simple: only the lines; use this for editing.</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><b>Score Editor</b></p>
+<p class="p2">The score editor holds arrangements with multiple sounds, so called "events". It represents a timeline on which events can be arranged. The sounds can be mono audio-files or a test signal ("blip"). The type of event is represented by a color, and a name in the edit window. Check the "add" popup menu to add new events. Events can be moved by dragging them with the mouse, and duplicated by dragging with the option-key. The "snap" menu determines the resolution at which things can be dragged around. Note that multiple selection can be achieved using the shift-key, but only the first selected event can be moved at a time. Use the 'folder' options as described below to drag multiple events around. "plot all" will plot an overview of all spatial data used in the score. The "plot all" button plots all spatial information included in the current score. The tracks, represented by the horizontal white and grey alternating lines, are only for graphic convenience; events will not play differently on different tracks. As soon as the total track count is too low for the events that need to be displayed, the score editor will automaticly generate extra tracks.</p>
+<p class="p3"><i></i><br></p>
+<p class="p2"><i>File menu:</i></p>
+<p class="p2">When the arrangement is finished use "File-&gt;save score" to store it as a "score file" file. The file format is xml-based, clear and easy to understand so files can be edited by hand with a regular text editor. "File-combine or append scores" lets the user do as it says; select one or more score files in the file dialog and choose for every score file how where and how to include it in the current score.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>Options menu:</i></p>
+<p class="p2">"sort events" renumbers events according to their start times. The order of events does not change the way they are played back in any way.<span class="Apple-converted-space"> </span></p>
+<p class="p2">"overlapping events to new tracks" detects all overlapping events in the current score and rearranges things so that they don't overlap anymore. The total track cound might increase when using this option. This is also automatically done in various other functions in the Score Editor.</p>
+<p class="p2">"add track" adds a track manually. "remove unused tracks" will remove tracks above the default track count unless an event is on them.</p>
+<p class="p2">"folder from selected events" will create a 'folder' event from the currently selected events. It will show up in the editor as a grey colored event named "folder (n events)". Folders can be opened by selecting them, click "edit" and then "open" in the Event Editor.</p>
+<p class="p2">"unpack selected folders" will place the folder contents back in to the main score and delete the empty folder. It only affects the 'folder' events among the currently selected events.</p>
+<p class="p2">"select all" will select all events.</p>
+<p class="p2">"select similar" will select all events of the same type as the ones currently selected.</p>
+<p class="p3"><br></p>
+<p class="p2">To edit events in the Score Editor click on "edit". This will open a new window: the Event Editor.</p>
+<p class="p3"><br></p>
+<p class="p2"><b>Event Editor</b></p>
+<p class="p2">The event editor gives control over the first selected event in the score editor. Starttime, duration, level and event type can be set for every event. The rest of the window changes according to the event type chosen.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2">event types:</p>
+<p class="p3"><i></i><br></p>
+<p class="p2"><i>linear</i></p>
+<p class="p2">linear events are point sources, moving according to a specified spatial path. The movements are calculated with linear interpolation of the Wavefield Synthesis phase difference calculation. The paths themselves however are always calculated with cubic interpolation in between the points. Paths can be edited in the Path Editor by clicking "edit". This creates a copy of the path. When you want to use the edited path in the event click "from editor", and the currently selected path from the editor will be copied to the event. Use "plot" to do a fast plot of the path with cubic interpolation. The length of the spatial path always decides the duration of the event. To change lengths of linear and cubic events use the path editor as described above.</p>
+<p class="p3"><br></p>
+<p class="p2">---- int types:</p>
+<p class="p2"><i>cubic</i></p>
+<p class="p2">Same as linear, but here the phase calculations are done with cubic interpolation. This results in a little better sound quality, with a lot more CPU usage.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>static</i></p>
+<p class="p2">static events are non-moving point sources. A position x/y in meters can be specified in the window (where x,y = 0,0 is the center of the hall, negative x is to the left, negative y is to the back)</p>
+<p class="p3"><br></p>
+<p class="p2"><i>plane</i></p>
+<p class="p2">plane events are plane waves. They are specified with angle from center in degrees ( where 0 degrees is in front ) and distance in meters.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>index</i></p>
+<p class="p2">index events address a specific speaker in the WFS system. The index is the speaker number, counting clockwise, starting at the left top of the square. "plot" will display the currently selected speaker as a point in a plot window. Indexes between whole numbers will pan the output between the two nearest speakers. This event type uses by far the lowest amount of CPU power.</p>
+<p class="p3"><br></p>
+<p class="p2">---- audio types</p>
+<p class="p2"><i>buf</i></p>
+<p class="p2">buf events contain a reference to an audio file, which will be loaded into the server's memory when played. This is the best option for shorter audio files. The audio files should always be mono, a warning will be displayed when this is not the case. Files can be browsed using the finders browsing window or specified by hand. the "check" button verifies if the file exist and can be used, and also stores the duration of the file in the numberbox below it. Clicking the "use" button next to that will change the events duration to that of the sound file. In case of linear and cubic events this will also change the duration of the path. "rate" specifies the playback rate and "loop" the loop mode.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>disk</i></p>
+<p class="p2">disk events also contain a reference to an audio file, but are played back from disk. This is a better option for longer audio files, but when too many are running at the same time clicks may occur. Disk events don't have rate and loop options.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>blip</i></p>
+<p class="p2">blip events contain a test signal. Frequency, rate and noise level can be changed</p>
+<p class="p3"><br></p>
+<p class="p2"><i>func</i></p>
+<p class="p2">func events cannot be used yet. They will contain valid SuperCollider code for the audio, which will be generated in realtime</p>
+<p class="p3"><br></p>
+<p class="p2"><i>live</i></p>
+<p class="p2">live events can be used, but are not yet supported by the wfs system. For these events live audio input from microphones etc can be used. However there will<span class="Apple-converted-space">  </span>be little over 512 samples latency.</p>
+<p class="p3"><br></p>
+<p class="p2">---- special type:</p>
+<p class="p2"><i>folder</i></p>
+<p class="p2">a folder event contains a full score, which is played back at the folder's start time. To open the folder score press "open" in the editor. This will open a new Score Editor window with a darker color and a few options disabled. The duration of the folder event is derrived automatlcally from it's contents. A folder can contain the same types of event as the score, and can also contain subfolders (and sub-subfolders and so on).</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><b>Transport Window</b></p>
+<p class="p2">The transport window contains the play and stop buttons and timeline indicator for the system. The window will always play the currently selected Score Window. The Score Editor will also display the time position as a black line. Playback will start up a pulse signal on the master server, which is used for synchronisation on the client servers (or on the master in single mode). Before the counter starts there will always be the "load delay" (which is specified in WFSEvent.wait and defaults to 5 seconds). This is the time needed to load and setup the first playing events. If the time display is not running after that something is wrong with the master server. Pressing "K" and booting it again will help in most cases. When the start time is not zero, only events starting after the starttime will be played. Events which should be runnig already at that time are ignored, as well as folder events starting before the start time.</p>
+<p class="p3"><br></p>
+<p class="p2"><i>current score:</i></p>
+<p class="p2">When multiple Score windows are opened at the same time, they are reffered to as id numbers. The id number of a score is always displayed in the Score editor window's name (between brackets). These numbers can also be found on the Transport window in the "score: current" menu. The last touched score editor is reffered to as "current", and is the one played when playback is started. Another currently opened score can be chosen from this menu, which will bring its window to the front and make it the "current" score. Clicking inside a Score editor window will do the same thing.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2"><b>Level Window</b></p>
+<p class="p2">The level window can be regarded as a giant volume fader. The default volume for the system is -12dB. The level is stored on each server application in a controlrate Bus, and used by the playing synths. It can be changed in realtime. This fader is different from most other faders in SuperCollider; it will never jump to a new value when clicked on. When the server is rebooted the value will return to the default, so the user should then move the fader a bit to restore it. Values are in dB.</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><b>about the Game Of Life system</b></p>
+<p class="p2">The Game Of Life system consists of 192 custom designed speakers, in a 10.2m x 10.2m squared configuration around the audience. The speakers are spaced 16,4cm from each other, and there are empty spaces of about 1m in every corner. There are also 12 subwoofers, devided equally among the 4 sides. All speakers are driven by costum designed amps from Hypex. The total rms power of the system is around 10.000 watts.</p>
+<p class="p3"><br></p>
+<p class="p2">The audio is calculated on two Apple Quad G5 2.5GHz computers (the clients), each responsible for two sides of the square. A third computer (the master) is a MacBook, which controls both clients. The systems are linked together trough Gigabit Ethernet and Adat optical cables (out from the master, in to both clients). The master computer is also responsible for all graphic information and functions as a control unit. <span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p2">The interfacing between computers and amplifiers is done using 8 Motu 2408mkIII units and 24 Behringer ADA8000 units. The system is designed to be portable and easy to set up and break down.</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p2"><b>about the WFS startup modes</b></p>
+<p class="p2">In the current default setup mode ( 'single' ) a headphone playback model is used. This gives a representation of how things will sound on the full system. The software for the full system is already included as well; it can be started by calling:</p>
+<p class="p7"><br></p>
+<p class="p8"><span class="s1">WFS</span><span class="s2">.startupFull; </span>// for the master computer in the gameoflife system</p>
+<p class="p8"><span class="s1">WFS</span><span class="s2">.startupClient; </span>// for the client computers</p>
+<p class="p9"><br></p>
+<p class="p9"><br></p>
+<p class="p2"><b>about the sync system</b></p>
+<p class="p2">For synchronising the computers used in the system an audio pulse signal is used. It is emitted from the system's "masterServer", which runs on the master computer. The pulse is sent to all client computers trough a digital audio connection. Each computer contains a counter system which starts the pre-loaded and setup events at the apropriate times. Before running any scores a measurement should be made of the input to output delays of all running server applications on all clients. This is done by pushing the "get sync delays" button (which only appears in the master computer mode), and will take a few seconds. These measurements are then used to compensate the output latency differences. This system provides a full sample-accurate synchronisation for the whole system, which is crucial because the client computers each calculate for a number of speakers, and the wfs system depends on time differences between speakers. The sync system is also used internally for the 'single' mode, to give an accurate view of what will be happening once running on the real system.</p>
+<p class="p7"><br></p>
+<p class="p10">ws 2006</p>
+</body>
+</html>
