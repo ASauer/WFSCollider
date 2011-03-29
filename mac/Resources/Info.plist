@@ -150,7 +150,7 @@
 	<key>CFBundleSignature</key>
 	<string>SCjm</string>
 	<key>CFBundleVersion</key>
-	<string>Beta 3</string>
+	<string>Beta 4</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
