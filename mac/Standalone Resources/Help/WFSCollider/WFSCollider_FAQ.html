@@ -10,6 +10,8 @@
 p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Verdana; color: #000101}
 p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; color: #000101; min-height: 15.0px}
 p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; color: #000101}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Helvetica; min-height: 16.0px}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Helvetica}
 span.s1 {font: 13.0px Helvetica; color: #000000}
 </style>
 </head>
@@ -19,5 +21,9 @@ span.s1 {font: 13.0px Helvetica; color: #000000}
 <p class="p3">Q: Sometimes when importing an audio file WFSCollider crashes.</p>
 <p class="p2"><br></p>
 <p class="p3">A: SuperCollider does not support file names with non-ascii symbols. Using file names with <span class="s1">non-ascii symbols (i.e. olá.wav) might crash WFSCollider.</span></p>
+<p class="p4"><br></p>
+<p class="p5">Q: I can't hear some events of type 'index' in the offline version.</p>
+<p class="p4"><br></p>
+<p class="p5">A: Events of type 'index' with a value of n will play in the n'th speaker accoarding the speaker configuration. Then default configuration for offline is stereo (two speakers), therefore any events with index bigger than 2 will not play.</p>
 </body>
 </html>
