@@ -1,0 +1,96 @@
+WFSCollider V1.0 OSC specification
+
+/wfscollider/source/set index type x y level
+	set all parameters of source
+	index[int]: (0...7) - which of the 8 inputs to address
+	type[string]: either "plane" or "point".
+	x[float]: x coordinate in meters
+	y[float]: y coordinate in meters
+	level[float]: level value in range [0,1]
+	
+	If the source is of different type then the "type" then it will switch from point to plane or vice-versa.
+	
+/wfscollider/source/mute index on_off
+	activates/deactivates (mutes) source
+	index[int]: (0...7) - which of the 8 inputs to address
+	on_off[int]: [0,1] - 1 mutes, 0 umutes source	
+	
+/wfscollider/source/level index value
+	set level
+	index[int]: (0...7) - which of the 8 inputs to address
+	value[float]: level value in range [0,1] 
+	
+/wfscollider/source/position index x y
+	set position
+	index[int]: (0...7) - which of the 8 inputs to address
+	x[float]: x in meters (point source) or ang in degrees (plane wave).
+	y[float]: y in meters (point source) or dist in meters (plane wave).
+	
+/wfscollider/source/position_polar index ang dist
+	set position
+	index[int]: (0...7) - which of the 8 inputs to address
+	ang[float]: angle in degrees [0,360].
+	dist[float]: distance in meters. 
+	
+/wfscollider/source/type index type
+	set type.
+	index[int]: (0...7) - which of the 8 inputs to address
+	type[string]: either "plane" or "point".
+	
+/wfscollider/all …list	
+	
+/wfscollider/level value
+	value[float]: global level in range [0,1]
+	
+/wfscollider/eq/low/freq value
+	value[float]: frequency in range [50,1000]
+/wfscollider/eq/low/gain value
+	value[float]: gain in range [0,1]
+/wfscollider/eq/mid/freq value
+	value[float]: frequency in range [167,6000]
+/wfscollider/eq/mid/gain value
+	value[float]: gain in range [0,1]
+/wfscollider/eq/mid/q value
+	value[float]: q in range [0.1,10]
+/wfscollider/eq/high/freq value
+	value[float]: frequency in range [1000,10289]
+/wfscollider/eq/high/gain value
+	value[float]: gain in range [0,1]
+	
+/wfscollider/stop
+	stops live mode
+	
+/wfscollider/start
+	start live mode
+	
+	
+==Queries==
+	
+/wfscollider/info/source index
+	send information on the state of source at index. Will output:
+	/wfscollider/info/source index type loc1 loc2 level on_off
+	
+/wfscollider/info/all
+	sends information for all sources
+	
+	
+	NOTE: plane waves should not be moved during perfomance, since this might result in artifacts. movement should 	only be done to find a good position for the plane wave source, and then the source should be left at that 	position during the performance.
+ 
+ 
+ - When switching from plane wave source to point source the synth is freed with fade out and a new synth is created immediately
+ - When the live system is booted all 8 sources will be unpaused and set to point sources.
+ 
+
+Examples
+
+- set source number 3 to x= 3 y=2
+
+/wfscollider/source/set 2 point 3 2
+
+- change source 3 from point to plane at 30º and 5 meters distance
+
+/wfscollider/source/set 2 plane 30 5
+
+- mute source 3
+
+/wfscollider/source/mute 3 1

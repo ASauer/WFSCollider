@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<meta name="CocoaVersion" content="1038.35">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Verdana; color: #000101}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana; min-height: 15.0px}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Verdana}
+p.p4 {margin: 0.0px 0.0px 0.0px 57.0px; text-indent: -57.0px; font: 9.0px Monaco}
+p.p5 {margin: 0.0px 0.0px 0.0px 57.0px; text-indent: -57.0px; font: 9.0px Monaco; min-height: 12.0px}
+p.p6 {margin: 0.0px 0.0px 0.0px 57.0px; text-indent: -57.0px; font: 9.0px Monaco; color: #cd1713}
+p.p7 {margin: 0.0px 0.0px 0.0px 57.0px; text-indent: -57.0px; font: 9.0px Monaco; color: #102ac2}
+p.p8 {margin: 0.0px 0.0px 0.0px 57.0px; text-indent: -57.0px; font: 9.0px Monaco; color: #008325}
+p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; min-height: 12.0px}
+span.s1 {font: 12.0px Helvetica}
+span.s2 {font: 9.0px Monaco; color: #102ac2}
+span.s3 {font: 9.0px Monaco}
+span.s4 {color: #102ac2}
+span.s5 {color: #737373}
+span.s6 {color: #000000}
+span.s7 {color: #008325}
+span.Apple-tab-span {white-space:pre}
+</style>
+</head>
+<body>
+<p class="p1"><b>WFSLive</b></p>
+<p class="p2"><br></p>
+<p class="p3">WFSLive allows for real-time usage of the system, through the 8 analog inputs present in the MOTU soundcard connected to the laptop computer.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">Usage:</p>
+<p class="p2"><br></p>
+<p class="p3">1 - Connect your sources to inputs 1 to 8 of the MOTU soundcard of the laptop.</p>
+<p class="p3">2 - Go to menu entry View-&gt;Live.</p>
+<p class="p3">3 - Adjust the global level (View-&gt;Level).</p>
+<p class="p3">4 - Press the play button.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">Sources can be moved by draggint the points in the window.</p>
+<p class="p2"><span class="Apple-tab-span">	</span></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="s1"><img src="attachments/WFSLive/Pasted Graphic 1.png" alt="attachments/WFSLive/Pasted Graphic 1.png"></span></p>
+<p class="p2"><br></p>
+<p class="p3">Each track has level slider, an on/off button and a button to switch between point source and plane wave.</p>
+<p class="p2"><br></p>
+<p class="p3">InputRouter</p>
+<p class="p2"><br></p>
+<p class="p3"><span class="Apple-tab-span">	</span><span class="s1"><img src="attachments/WFSLive/Pasted Graphic.png" alt="attachments/WFSLive/Pasted Graphic.png"></span></p>
+<p class="p2"><br></p>
+<p class="p3">The InputRouter allows to select which input goes to which WFS track, and to apply EQ and compression to the input signal.</p>
+<p class="p2"><br></p>
+<p class="p1"><b>OSC control</b></p>
+<p class="p2"><br></p>
+<p class="p3">Most parameters of each track together with many global parameters can be controlled via OSC, either from inside SuperCollider or from another program. The external program (i.e. max/msp) should send the osc commands to the language port of supercollider, which is usually 57120. To check what is the current port do <span class="s2">NetAddr</span><span class="s3">.langPort</span>.</p>
+<p class="p2"><br></p>
+<p class="p3">The OSC specification can be found <a href="WFS_OSC_spec_1.0.txt">here</a>.</p>
+<p class="p2"><br></p>
+<p class="p3">Examples:</p>
+<p class="p2"><br></p>
+<p class="p4">b = <span class="s4">NetAddr</span>.new(<span class="s5">"127.0.0.1"</span>, 57120);</p>
+<p class="p4">b = <span class="s4">NetAddr</span>.new(<span class="s5">"127.0.0.1"</span>, 57121);</p>
+<p class="p5"><br></p>
+<p class="p6">//see the messages being sent</p>
+<p class="p7">WFSLiveOSCResp<span class="s6">.verbose = </span>false</p>
+<p class="p7">WFSLiveOSCResp<span class="s6">.verbose = </span>true</p>
+<p class="p5"><br></p>
+<p class="p5"><br></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/source/position'<span class="s6">,0,-4,4)</span></p>
+<p class="p5"><br></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/source/position_polar'<span class="s6">,0, -45,6)</span></p>
+<p class="p5"><br></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/source/mute'<span class="s6">,0,</span><span class="s4">false</span><span class="s6">)</span></p>
+<p class="p5"><br></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/source/level'<span class="s6">,0,0.1)</span></p>
+<p class="p5"><br></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/source/type'<span class="s6">,0,</span>\plane<span class="s6">)</span></p>
+<p class="p5"><br></p>
+<p class="p4">b.sendMsg(<span class="s7">'/wfscollider/source/set'</span>,0,\plane,-4,4,0.5)</p>
+<p class="p5"><br></p>
+<p class="p4">b.sendMsg(*([<span class="s7">'/wfscollider/all'</span>]++8.collect{</p>
+<p class="p4"><span class="Apple-tab-span">	</span>[[\point,\plane].choose,rrand(-5.0,5.0),rrand(-5.0,5.0),rrand(0.0,1.0 )]</p>
+<p class="p4"><span class="Apple-tab-span">	</span>}.flat</p>
+<p class="p4">))</p>
+<p class="p5"><br></p>
+<p class="p6">//global controls</p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/level'<span class="s6">,0.5)</span></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/start'<span class="s6">)</span></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/stop'<span class="s6">)</span></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/eq/mid/q'<span class="s6">, 11)</span></p>
+<p class="p5"><br></p>
+<p class="p6">//get info</p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/info/all'<span class="s6">)</span></p>
+<p class="p8"><span class="s6">b.sendMsg(</span>'/wfscollider/info/source',4<span class="s6">)</span></p>
+<p class="p9"><br></p>
+<p class="p3">Revised on 04/2011</p>
+</body>
+</html>
