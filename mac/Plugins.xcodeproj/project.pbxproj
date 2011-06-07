@@ -40,6 +40,7 @@
 				3772616C0CF6210B0037407D /* PBXTargetDependency */,
 				F3F479290D03BD25001A470F /* PBXTargetDependency */,
 				F3F479430D03BFC9001A470F /* PBXTargetDependency */,
+				094BCAEE139E93E600CC527A /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = "SC_Synth PlugIns";
@@ -123,11 +124,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		094BCAED139E93E600CC527A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F50D04F702E68E8201CA2799 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0911D5F912FC68A5006D78FE /* SampleSchedUgens */;
+			remoteInfo = SampleSchedUgens;
+		};
 		09704A66128800CB004ACA5B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F50D04F702E68E8201CA2799 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 09704A521287FFA4004ACA5B /* WFSUGens */;
+			remoteGlobalIDString = 09704A521287FFA4004ACA5B;
 			remoteInfo = WFSUGens;
 		};
 		3772616B0CF6210B0037407D /* PBXContainerItemProxy */ = {
@@ -315,7 +323,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0911D60112FC68A5006D78FE /* SampleSchedUGens.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; includeInIndex = 0; path = SampleSchedUGens.scx; sourceTree = BUILT_PRODUCTS_DIR; };
+		0911D60112FC68A5006D78FE /* SampleSchedUgens.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; includeInIndex = 0; path = SampleSchedUgens.scx; sourceTree = BUILT_PRODUCTS_DIR; };
 		0911D60612FC68F0006D78FE /* SampleSchedUGens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleSchedUGens.cpp; sourceTree = "<group>"; };
 		09704A5B1287FFA4004ACA5B /* WFSUGens.scx */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.objfile"; includeInIndex = 0; path = WFSUGens.scx; sourceTree = BUILT_PRODUCTS_DIR; };
 		09704A601288005D004ACA5B /* WFSUgens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WFSUgens.cpp; sourceTree = "<group>"; };
@@ -817,7 +825,7 @@
 				F3F479230D03BCDB001A470F /* ReverbUGens.scx */,
 				37E291990E2CEBE400CB854E /* KeyboardUGens.scx */,
 				09704A5B1287FFA4004ACA5B /* WFSUGens.scx */,
-				0911D60112FC68A5006D78FE /* SampleSchedUGens.scx */,
+				0911D60112FC68A5006D78FE /* SampleSchedUgens.scx */,
 			);
 			name = plugins;
 			path = ../common/build/plugins;
@@ -887,7 +895,7 @@
 			);
 			name = SampleSchedUgens;
 			productName = FFT_UGens;
-			productReference = 0911D60112FC68A5006D78FE /* SampleSchedUGens.scx */;
+			productReference = 0911D60112FC68A5006D78FE /* SampleSchedUgens.scx */;
 			productType = "com.apple.product-type.objfile";
 		};
 		09704A521287FFA4004ACA5B /* WFSUGens */ = {
@@ -1329,7 +1337,6 @@
 			isa = PBXProject;
 			buildConfigurationList = 88332412090ABD1F00A4A7E4 /* Build configuration list for PBXProject "Plugins" */;
 			compatibilityVersion = "Xcode 2.4";
-			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1625,6 +1632,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		094BCAEE139E93E600CC527A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0911D5F912FC68A5006D78FE /* SampleSchedUgens */;
+			targetProxy = 094BCAED139E93E600CC527A /* PBXContainerItemProxy */;
+		};
 		09704A67128800CB004ACA5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 09704A521287FFA4004ACA5B /* WFSUGens */;
@@ -1774,7 +1786,7 @@
 		0911D5FF12FC68A5006D78FE /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_VERSION = 4.0;
 				OTHER_CFLAGS = "$(inherited)";
@@ -1789,7 +1801,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				OTHER_CFLAGS = "$(inherited)";
-				PRODUCT_NAME = WFSUGens;
+				PRODUCT_NAME = SampleSchedUgens;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = "Deployment32-64";
