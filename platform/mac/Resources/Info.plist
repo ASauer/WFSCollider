@@ -138,7 +138,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>SCcube</string>
+	<string>wfsicon5</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.sourceforge.supercollider</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -150,7 +150,7 @@
 	<key>CFBundleSignature</key>
 	<string>SCjm</string>
 	<key>CFBundleVersion</key>
-	<string>-Unofficial Build-</string>
+	<string>Beta 5</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

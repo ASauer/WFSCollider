@@ -7,3 +7,9 @@
 [submodule "external_libraries/boost_lockfree"]
 	path = external_libraries/boost_lockfree
 	url = git://supercollider.git.sourceforge.net/gitroot/supercollider/boost-lockfree
+[submodule "mac/Standalone Resources/SCClassLibrary/Extensions/WFS Library"]
+	path = mac/Standalone Resources/SCClassLibrary/Extensions/WFS Library
+	url = git://github.com/GameOfLife/WFSCollider-Class-Library.git
+[submodule "mac/Standalone Resources/quarks"]
+	path = mac/Standalone Resources/quarks
+	url = git://github.com/miguel-negrao/Quarks.git

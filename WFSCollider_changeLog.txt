@@ -1,0 +1,63 @@
+Changes are listed below, grouped under each point release of WFSCollider.
+
+WFSCollider v1.b5, released 2011-05
+===================================
+
+- Better help files organization.
+- WFSLive : real-time usage of the system via 8 analog inputs and control via OSC.
+- When getting path from Editor allow to choose to keep current duration or use path duration.
+- WFSBatch operates inside folders too.
+- Better cross-platform support.
+
+Bug Fixes:
+----------
+- When changing from static to moving source, use the event's length.
+- Fixed "Select Similar".
+- Fixed plot for Plane waves.
+- Fixed: Changing Level in WFSEventEditor does not update fader in mixer.
+- Fixed: Menu Events > Sort: nothing is sorted.
+- Fixed: Score names and current in transport: Not clear which score is current.
+- Fixed: Split in combination with moving paths: region changes length.
+- Fixed: WFSTransport window always stays on top when switching to another app.
+- Fixed: Alert when nothing is wrong for Copy all soundfiles.
+
+WFSCollider v1.b4, released 2011-02
+===================================
+
+- Added several menu shortcuts.
+- Plot window now shows file names.
+- When moving events with shift down, they will move only vertically.
+- Score file name and folder name appear on WFSScoreEditor window.
+- WFSBatch: added x,y position change for WFSPoints.
+- Added menu entry to plot events active at current position of timeline.
+
+Bug Fixes:
+----------
+- Fixed adding displacement of events when adding or duplicating events or unpacking folders.
+- WFSScoreEditor: clicking "i" will bring WFSEventEditor to the front.
+- WFSScoreEditor: moving horizontally now works correctly. 
+
+WFSCollider v1.b3, released 2011-01
+===================================
+
+- Plot window now allows to drag points and paths, and also to scale and rotate the paths.
+- If a score was not changed, closing the window does not prompt to save.
+
+WFSCollider v1.b2, released 2011-01
+===================================
+
+- Undo, redo implemented.
+- Score editor: possible to drag select events, and use the mouse to adjust durations, start times and fade times. 
+- Mixer for real-time control of levels.
+- WFSBatch - alter multiple events at the same time.
+- Mute works recursively across folders.
+- Online and Offline version merged.
+- Folder names can be edited.
+- Stereo metering for the offline version.
+- Score can be saved without prompt for a path.
+- Menus are now placed in the top menu bar of SuperCollider.
+
+Bug Fixes:
+----------
+- Fixed WFSPathEditor bug.
+- Fixed delete bug.
