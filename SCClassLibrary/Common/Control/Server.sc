@@ -253,6 +253,9 @@ Server {
 
 	var <pid;
 	var serverInterface;
+	var <blockCount=0;
+	var <sampleStartTime=0;
+
 
 	*default_ { |server|
 		default = server; // sync with s?
@@ -432,6 +435,7 @@ Server {
 					if (serverRunning.not) {
 
 						ServerQuit.run(this);
+						sampleStartTime = 0;
 
 						if (serverInterface.notNil) {
 							serverInterface.disconnect;
@@ -452,6 +456,7 @@ Server {
 						})
 
 					}{
+						this.getSampleStartTime;
 						ServerBoot.run(this);
 					};
 					{ this.changed(\serverRunning); }.defer;
@@ -553,7 +558,7 @@ Server {
 					};
 					alive = true;
 					#cmd, one, numUGens, numSynths, numGroups, numSynthDefs,
-						avgCPU, peakCPU, sampleRate, actualSampleRate = msg;
+						avgCPU, peakCPU, sampleRate, actualSampleRate, blockCount = msg;
 					{
 						this.serverRunning_(true);
 						this.changed(\counts);
