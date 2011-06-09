@@ -1193,7 +1193,7 @@ bool AudioStatusCmd::Stage2()
 {
 	small_scpacket packet;
 	packet.adds("/status.reply");
-	packet.maketags(10);
+	packet.maketags(11);
 	packet.addtag(',');
 	packet.addtag('i');
 	packet.addtag('i');
@@ -1204,6 +1204,7 @@ bool AudioStatusCmd::Stage2()
 	packet.addtag('f');
 	packet.addtag('d');
 	packet.addtag('d');
+	packet.addtag('i'); // block count
 
 	packet.addi(1); // audio is always active now.
 	packet.addi(mWorld->mNumUnits);
@@ -1216,6 +1217,7 @@ bool AudioStatusCmd::Stage2()
 	packet.addf(driver->GetPeakCPU());
 	packet.addd(driver->GetSampleRate());
 	packet.addd(driver->GetActualSampleRate());
+	packet.addi(mWorld->mBufCounter);	// block count
 
 	SendReply(&mReplyAddress, packet.data(), packet.size());
 
