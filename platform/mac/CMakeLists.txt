@@ -235,6 +235,20 @@ endif(SNDFILE_FOUND)
 
 target_link_libraries(${scappbundlename} ${PTHREADS_LIBRARY})
 
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks")
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/quarks/wslib"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/quarks/XML"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/quarks/NetLib"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app"
 	DESTINATION ${scappdir}
 	USE_SOURCE_PERMISSIONS)
