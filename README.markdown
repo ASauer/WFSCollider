@@ -29,11 +29,16 @@ Get the source:
 
 	git clone --recursive git://github.com/GameOfLife/WFSCollider.git
 
-switch to the wfscurrent branch
+Go to the folder created and switch to the wfscurrent branch
 
 	git checkout wfscurrent
 
-Then build according to the general SuperCollider instructions (see readme): In XCode, first build the Synth project, then the plugins project and finally in the language project build the target "WFSCollider". You should then have the application ready in the build folder.
+then
+    mkdir build
+    cd build
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF ..
+    make install -j8
+for dual cores use -j4 for quad cores -j8, etc. The application will then be in ./build/WFSCollider/
 
 ## Acknowledgments ##
 WFSCollider was conceived by the Game Of Life Foundation, and developed by W. Snoei, R. Ganchrow and J. Truetzschler and M. Negrão.
