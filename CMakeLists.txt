@@ -339,3 +339,4 @@ mark_as_advanced(MATH_LIBRARY)
 mark_as_advanced(QT_QMAKE_EXECUTABLE)
 mark_as_advanced(SNDFILE)
 
+option (WFS_DEV "makes a symlink to the WFS Library folder" ON)

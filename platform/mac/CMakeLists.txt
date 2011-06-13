@@ -235,6 +235,34 @@ endif(SNDFILE_FOUND)
 
 target_link_libraries(${scappbundlename} ${PTHREADS_LIBRARY})
 
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks")
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/wslib"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/XML"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/NetLib"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+if(WFS_DEV)
+    message(STATUS "Creating symlink of submodules/WFS\ Library into the app bundle" )
+    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${PROJECT_SOURCE_DIR}/submodules/WFS Library\" 
+	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/WFS Library\" )" )
+
+else()
+    message(STATUS "Copying WFS Library into the app bundle ") 
+    install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/WFS Library"
+	DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/"
+	PATTERN .git EXCLUDE
+    )
+endif()
+	
+
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app"
 	DESTINATION ${scappdir}
 	USE_SOURCE_PERMISSIONS)
