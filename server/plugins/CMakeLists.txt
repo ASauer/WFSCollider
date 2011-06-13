@@ -52,6 +52,8 @@ set(plugin_sources
 
 	KeyboardUGens.cpp
 	MouseUGens.cpp
+
+	SampleSchedUGens.cpp
 )
 
 set(plugins "")
