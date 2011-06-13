@@ -11,5 +11,5 @@
 	path = mac/Standalone Resources/SCClassLibrary/Extensions/WFS Library
 	url = git://github.com/GameOfLife/WFSCollider-Class-Library.git
 [submodule "mac/Standalone Resources/quarks"]
-	path = mac/Standalone Resources/quarks
+	path = quarks
 	url = git://github.com/miguel-negrao/Quarks.git
