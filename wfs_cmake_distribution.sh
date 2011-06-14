@@ -1,0 +1,1 @@
+cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='ppc;i386;x86_64' -DSC_APP_BUNDLE_LIBS ..

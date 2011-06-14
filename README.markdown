@@ -44,6 +44,10 @@ For development work do
 
 cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=ON -DCMAKE_BUILD_TYPE=Release ..
 
+For release
+
+cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='ppc;i386;x86_64' -DSC_APP_BUNDLE_LIBS ..
+
 ## Acknowledgments ##
 WFSCollider was conceived by the Game Of Life Foundation, and developed by W. Snoei, R. Ganchrow and J. Truetzschler and M. Negrão.
 
