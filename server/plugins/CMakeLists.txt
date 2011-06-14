@@ -50,6 +50,8 @@ set(plugin_sources
 
 	KeyboardUGens.cpp
 	MouseUGens.cpp
+
+	WFSUgens.cpp
 )
 
 set(plugins "")
