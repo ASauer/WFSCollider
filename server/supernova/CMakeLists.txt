@@ -1,4 +1,5 @@
 find_package(FFTW3f)
+find_package(Sndfile)
 
 if (FFTW3F_FOUND)
   add_definitions("-DSC_FFT_FFTW")
@@ -24,6 +25,12 @@ if(MEMORY_DEBUGGING)
                  APPEND
                  PROPERTY COMPILE_DEFINITIONS_DEBUG NOVA_MEMORY_DEBUGGING)
 endif()
+
+if(SNDFILE_FOUND)
+    include_directories(${SNDFILE_INCLUDE_DIR})
+elseif(NOT NO_LIBSNDFILE)
+    message(SEND_ERROR "Cannot find libsndfile")
+endif(SNDFILE_FOUND)
 
 
 
@@ -91,11 +98,9 @@ if (JACK)
     target_link_libraries(libsupernova ${JACK})
 endif()
 
-find_library(SNDFILE NAMES sndfile)
-if (NOT SNDFILE)
-    message(SEND_ERROR "Cannot find libsndfile")
-else()
-    target_link_libraries(libsupernova ${SNDFILE})
+
+if(SNDFILE_FOUND)
+    target_link_libraries(libsupernova ${SNDFILE_LIBRARIES})
 endif()
 
 if (FFTW3F_FOUND)
