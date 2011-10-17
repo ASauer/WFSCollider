@@ -1,6 +1,5 @@
 ServerOptions
 {
-
 	var <>numAudioBusChannels=128;
 	var <>numControlBusChannels=4096;
 	var <>numInputBusChannels=8;
@@ -37,6 +36,7 @@ ServerOptions
 	var <>remoteControlVolume = false;
 
 	var <>memoryLocking = false;
+	var <>threads = nil; // for supernova
 
 	device
 	{
@@ -144,6 +144,11 @@ ServerOptions
 		if (memoryLocking, {
 			o = o ++ " -L";
 		});
+		if (threads.notNil, {
+			if (Server.program.asString.endsWith("supernova")) {
+				o = o ++ " -T " ++ threads;
+			}
+		});
 		^o
 	}
 
@@ -189,7 +194,7 @@ ServerOptions
 	}
 }
 
-Server : Model {
+Server {
 	classvar <>local, <>internal, <default, <>named, <>set, <>program, <>sync_s = true;
 
 	var <name, <>addr, <clientID=0;
@@ -211,7 +216,8 @@ Server : Model {
 
 	var <window, <>scopeWindow;
 	var <emacsbuf;
-	var recordBuf, <recordNode, <>recHeaderFormat="aiff", <>recSampleFormat="float"; 	var <>recChannels=2;
+	var recordBuf, <recordNode, <>recHeaderFormat="aiff", <>recSampleFormat="float";
+	var <>recChannels=2;
 
 	var <volume;
 
@@ -323,9 +329,9 @@ Server : Model {
 		if (condition.isNil) { condition = Condition.new };
 		cmdName = args[0].asString;
 		if (cmdName[0] != $/) { cmdName = cmdName.insert(0, $/) };
-		resp = OSCProxy({|msg|
+		resp = OSCFunc({|msg|
 			if (msg[1].asString == cmdName) {
-				resp.clear;
+				resp.free;
 				condition.test = true;
 				condition.signal;
 			};
@@ -423,7 +429,7 @@ Server : Model {
 	wait { arg responseName;
 		var routine;
 		routine = thisThread;
-		OSCProxy({
+		OSCFunc({
 			routine.resume(true);
 		}, responseName, addr).oneShot;
 	}
@@ -442,7 +448,7 @@ Server : Model {
 				((serverRunning.not
 				  or: (serverBooting and: mBootNotifyFirst.not))
 				 and: {(limit = limit - 1) > 0})
-				and: pid.pidRunning
+				and: { pid.tryPerform(\pidRunning) == true }
 			},{
 				0.2.wait;
 			});
@@ -492,7 +498,7 @@ Server : Model {
 	addStatusWatcher {
 		if(statusWatcher.isNil) {
 			statusWatcher =
-				OSCProxy({ arg msg;
+				OSCFunc({ arg msg;
 					var cmd, one;
 					if(notify){
 						if(notified.not){
@@ -510,7 +516,7 @@ Server : Model {
 					}.defer;
 				}, '/status.reply', addr).fix;
 		} {
-			statusWatcher.enable
+			statusWatcher.enable;
 		};
 	}
 	// Buffer objects are cached in an Array for easy
@@ -540,6 +546,14 @@ Server : Model {
 	cachedBuffersDo { |func| Buffer.cachedBuffersDo(this, func) }
 	cachedBufferAt { |bufnum| ^Buffer.cachedBufferAt(this, bufnum) }
 
+	inputBus {
+		^Bus(\audio, this.options.numOutputBusChannels, this.options.numInputBusChannels, this);
+	}
+
+	outputBus {
+		^Bus(\audio, 0, this.options.numOutputBusChannels, this);
+	}
+
 	startAliveThread { arg delay=0.0;
 		this.addStatusWatcher;
 		^aliveThread ?? {
@@ -563,7 +577,7 @@ Server : Model {
 			aliveThread = nil;
 		});
 		if( statusWatcher.notNil, {
-			statusWatcher.clear;
+			statusWatcher.free;
 			statusWatcher = nil;
 		});
 	}
@@ -669,6 +683,26 @@ Server : Model {
 	}
 
 	quit {
+		var	serverReallyQuitWatcher, serverReallyQuit = false;
+		statusWatcher !? {
+			statusWatcher.disable;
+			if(notified) {
+				serverReallyQuitWatcher = OSCFunc({ |msg|
+					if(msg[1] == '/quit') {
+						statusWatcher.enable;
+						serverReallyQuit = true;
+						serverReallyQuitWatcher.free;
+					};
+				}, '/done', addr);
+				// don't accumulate quit-watchers if /done doesn't come back
+				AppClock.sched(3.0, {
+					if(serverReallyQuit.not) {
+						"Server % failed to quit after 3.0 seconds.".format(this.name).warn;
+						serverReallyQuitWatcher.free;
+					};
+				});
+			};
+		};
 		addr.sendMsg("/quit");
 		if (inProcess, {
 			this.quitInProcess;
@@ -677,7 +711,6 @@ Server : Model {
 			"/quit sent\n".inform;
 		});
 		alive = false;
-		statusWatcher !? { statusWatcher.disable };
 		notified = false;
 		dumpMode = 0;
 		pid = nil;
@@ -706,7 +739,7 @@ Server : Model {
 		// you can't cause them to quit via OSC (the boot button)
 
 		// this brutally kills them all off
-		"killall -9 scsynth".unixCmd;
+		thisProcess.platform.killAll(this.program.basename);
 		this.quitAll;
 	}
 	freeAll {
@@ -815,7 +848,7 @@ Server : Model {
 			}{
 				recordNode.run(true)
 			};
-			"Recording".postln;
+			"Recording: %\n".postf(recordBuf.path);
 		};
 	}
 
@@ -824,19 +857,21 @@ Server : Model {
 	}
 
 	stopRecording {
-		recordNode.notNil.if({
+		if(recordNode.notNil) {
 			recordNode.free;
 			recordNode = nil;
 			recordBuf.close({ arg buf; buf.free; });
+			"Recording Stopped: %\n".postf(recordBuf.path);
 			recordBuf = nil;
-			"Recording Stopped".postln },
-		{ "Not Recording".warn });
+		} {
+			"Not Recording".warn
+		};
 	}
 
 	prepareForRecord { arg path;
 		if (path.isNil) {
 			if(File.exists(thisProcess.platform.recordingsDir).not) {
-				systemCmd("mkdir" + thisProcess.platform.recordingsDir.quote);
+				thisProcess.platform.recordingsDir.mkdir
 			};
 
 			// temporary kludge to fix Date's brokenness on windows
@@ -850,6 +885,7 @@ Server : Model {
 		recordBuf = Buffer.alloc(this, 65536, recChannels,
 			{arg buf; buf.writeMsg(path, recHeaderFormat, recSampleFormat, 0, 0, true);},
 			this.options.numBuffers + 1); // prevent buffer conflicts by using reserved bufnum
+		recordBuf.path = path;
 		SynthDef("server-record", { arg bufnum;
 			DiskOut.ar(bufnum, In.ar(0, recChannels))
 		}).send(this);
@@ -875,7 +911,7 @@ Server : Model {
 	queryAllNodes { arg queryControls = false;
 		var resp, done = false;
 		if(isLocal, {this.sendMsg("/g_dumpTree", 0, queryControls.binaryValue);}, {
-			resp = OSCProxy({ arg msg;
+			resp = OSCFunc({ arg msg;
 				var i = 2, tabs = 0, printControls = false, dumpFunc;
 				if(msg[1] != 0, {printControls = true});
 				("NODE TREE Group" + msg[2]).postln;
@@ -921,7 +957,7 @@ Server : Model {
 			this.sendMsg("/g_queryTree", 0, queryControls.binaryValue);
 			SystemClock.sched(3, {
 				done.not.if({
-					resp.clear;
+					resp.free;
 					"Remote server failed to respond to queryAllNodes!".warn;
 				});
 			});

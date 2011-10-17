@@ -1147,7 +1147,7 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 - (void)webView:(WebView *)sender didFailProvisionalLoadWithError:(NSError *)error forFrame:(WebFrame *)frame
 {
 	NSLog(@"didFailProvisionalLoadWithError: %@",[error localizedDescription]);
-	if (error.code == NSURLErrorCancelled) return; // this is Error -999
+	if ([error code] == NSURLErrorCancelled) return; // this is Error -999
 	if (mSCWebView) {
 		post("SCWebView load request failed: '%s'\n", [[error localizedDescription] cString]);
 		SEL selector = @selector(doFailAction);
@@ -1177,7 +1177,7 @@ void QDDrawBevelRect(CGContextRef cgc, CGRect bounds, float width, bool inout);
 - (void)webView:(WebView *)sender didFailLoadWithError:(NSError *)error
 {
 	NSLog(@"didFailLoadWithError: %@",[error localizedDescription]);
-	if (error.code == NSURLErrorCancelled) return; // this is Error -999
+	if ([error code] == NSURLErrorCancelled) return; // this is Error -999
 	if (mSCWebView) {
 		post("SCWebView load request failed: '%s'\n", [[error localizedDescription] cString]);
 		SEL selector = @selector(doFailAction);
@@ -1721,11 +1721,12 @@ int SCCocoaTextView::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 int SCCocoaTextView::getProperty(PyrSymbol *symbol, PyrSlot *slot)
 {
 	char *name = symbol->name;
+	VMGlobals *g = gMainVMGlobals;
 
 	if (strcmp(name, "string")==0) {
 		NSString* str = [mTextView string];
         const char * cstr = [str UTF8String];
-        PyrString *string = newPyrString(NULL, cstr, 0, true);
+        PyrString *string = newPyrString(g->gc, cstr, 0, true);
         SetObject(slot, string);
 		return errNone;
 	}
@@ -1733,7 +1734,7 @@ int SCCocoaTextView::getProperty(PyrSymbol *symbol, PyrSlot *slot)
 	if (strcmp(name, "selectedString")==0) {
 		NSString* str = [mTextView currentlySelectedTextOrLine:NULL];
         const char * cstr = [str UTF8String];
-        PyrString *string = newPyrString(NULL, cstr, 0, true);
+        PyrString *string = newPyrString(g->gc, cstr, 0, true);
         SetObject(slot, string);
 		return errNone;
 	}
@@ -1753,7 +1754,7 @@ int SCCocoaTextView::getProperty(PyrSymbol *symbol, PyrSlot *slot)
 	if (strcmp(name, "path")==0) {
 		if(mLastURL) {
 			const char * cstr = [[mLastURL path] UTF8String];
-			PyrString *string = newPyrString(NULL, cstr, 0, true);
+			PyrString *string = newPyrString(g->gc, cstr, 0, true);
 			SetObject(slot, string);
 		} else SetNil(slot);
 		return errNone;
@@ -1833,7 +1834,7 @@ bool SCCocoaTextView::linkAction(NSString *url)
 			VMGlobals *g = gMainVMGlobals;
 			g->canCallOS = true;
 			const char * cstr = [url UTF8String];
-			PyrString *string = newPyrString(NULL, cstr, 0, true);
+			PyrString *string = newPyrString(g->gc, cstr, 0, true);
 			++g->sp;  SetObject(g->sp, mObj);
 			++g->sp;  SetObject(g->sp, string);
 			++g->sp;  SetObject(g->sp, string);
@@ -2446,7 +2447,8 @@ int SCQuartzComposerView::getSCObjectForNSObject(PyrSlot *slot, id nsObject, NSS
 		return errNone;
 	} else if([type isEqualToString:QCPortTypeString]) {
 		const char * cstr = [nsObject UTF8String];
-		PyrString *string = newPyrString(NULL, cstr, 0, true);
+		VMGlobals *g = gMainVMGlobals;
+		PyrString *string = newPyrString(g->gc, cstr, 0, true);
 		SetObject(slot, string);
 		return errNone;
 	} else if([type isEqualToString:QCPortTypeColor]) {
@@ -2574,11 +2576,18 @@ SCWebView::SCWebView(SCContainerView *inParent, PyrObject* inObj, SCRect inBound
 	mWebView = [[SCNSWebView alloc] initWithFrame:matrect frameName:nil groupName: nil];
 	[mWebView initVars];
 	NSView *view = mTop->GetNSView();
-	SCNSFlippedView *clipView = [[SCNSFlippedView alloc] initWithFrame:[view frame]];
-	[view retain];
-	[[view window] setContentView:clipView];
-	[clipView addSubview:view];
-	[clipView addSubview:mWebView];
+	flipView = [[view window] contentView];
+	if (![flipView isKindOfClass: [SCNSFlippedView class]] ) {
+		flipView = [[SCNSFlippedView alloc] initWithFrame:[view frame]]; // a wrapper view hack to get coords right
+		[view retain];
+		[view setAutoresizingMask: 63];
+		[flipView setAutoresizesSubviews:YES];
+		[[view window] setContentView:flipView];
+		[flipView addSubview:view];
+	} else {
+		[flipView retain]; // increment the retain count
+	}
+	[view addSubview:mWebView];
 	
 	[mWebView setEditingDelegate:mWebView];
 	[mWebView setFrameLoadDelegate:mWebView];
@@ -2589,6 +2598,7 @@ SCWebView::SCWebView(SCContainerView *inParent, PyrObject* inObj, SCRect inBound
 	
 	[mWebView setFocusRingType:NSFocusRingTypeNone];
 	[mWebView setEnterExecutesSelection:YES];
+	[mWebView setPreferencesIdentifier:@"SuperCollider"];
 	
 	setVisibleFromParent();
 }
@@ -2599,6 +2609,16 @@ SCWebView::~SCWebView()
 	[mWebView close];
 	[[SCVirtualMachine sharedInstance] removeDeferredOperationsFor:mWebView];
 	[mWebView release];
+	if ([flipView retainCount] == 1) { // if nobody else needs this wrapperView, clean it up
+		NSView *view = mTop->GetNSView();
+		[[view window] setContentView:view];
+		[view release];
+		[flipView removeFromSuperview];
+		[flipView release];
+	} else {
+		[flipView release]; // otherwise just decrement the retain count
+	}
+
 }
 
 void SCWebView::setBounds(SCRect screct)
@@ -2783,7 +2803,35 @@ int SCWebView::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 		else [mWebView setEnterExecutesSelection:NO];
 		return errNone;
 	}
-	
+
+	if (strcmp(name, "fontFamily")==0) {
+		if(!isKindOfSlot(slot, class_array)) return errWrongType;
+		PyrSlot *slots = slotRawObject(slot)->slots;
+		if(!IsSym(slots+0)) return errWrongType;
+		PyrString* pstring = slotRawString(slots+1);
+		if(!pstring) return errFailed;
+
+		PyrSymbol *genericFont = slotRawSymbol(slots+0);
+		NSString *specificFont = [[NSString alloc] initWithCString: pstring->s length: pstring->size];
+
+		if (genericFont == getsym("standard"))
+			[[mWebView preferences] setStandardFontFamily: specificFont];
+		else if (genericFont == getsym("fixed"))
+			[[mWebView preferences] setFixedFontFamily: specificFont];
+		else if (genericFont == getsym("serif"))
+			[[mWebView preferences] setSerifFontFamily: specificFont];
+		else if (genericFont == getsym("sansSerif"))
+			[[mWebView preferences] setSansSerifFontFamily: specificFont];
+		else if (genericFont == getsym("cursive"))
+			[[mWebView preferences] setCursiveFontFamily: specificFont];
+		else if (genericFont == getsym("fantasy"))
+			[[mWebView preferences] setFantasyFontFamily: specificFont];
+
+		[specificFont release];
+
+		return errNone;
+	}
+
 	return SCView::setProperty(symbol, slot);
 }
 
@@ -3077,11 +3125,12 @@ int SCTextField::setProperty(PyrSymbol *symbol, PyrSlot *slot)
 int SCTextField::getProperty(PyrSymbol *symbol, PyrSlot *slot)
 {
 	char *name = symbol->name;
+	VMGlobals *g = gMainVMGlobals;
 
 	if (strcmp(name, "string")==0) {
 		NSString* str = [mTextField stringValue];
         const char * cstr = [str UTF8String];
-        PyrString *string = newPyrString(NULL, cstr, 0, true);
+        PyrString *string = newPyrString(g->gc, cstr, 0, true);
         SetObject(slot, string);
 		return errNone;
 	}

@@ -570,9 +570,9 @@ static bool ChooseOperatorFunc(BinaryOpUGen *unit);
 
 void BinaryOpUGen_Ctor(BinaryOpUGen *unit)
 {
-	bool initialized = ChooseOperatorFunc(unit);
 	unit->mPrevA = ZIN0(0);
 	unit->mPrevB = ZIN0(1);
+	bool initialized = ChooseOperatorFunc(unit);
 	if (unit->mCalcRate == calc_DemandRate) {
 		OUT0(0) = 0.f;
 	} else {
@@ -2027,7 +2027,7 @@ inline_functions void div_ai_nova(BinaryOpUGen *unit, int inNumSamples)
 {
 	float xb = ZIN0(1);
 
-	nova::times_vec_simd(OUT(0), IN(0), xb, inNumSamples);
+	nova::times_vec_simd(OUT(0), IN(0), 1.f/xb, inNumSamples);
 	unit->mPrevB = xb;
 }
 

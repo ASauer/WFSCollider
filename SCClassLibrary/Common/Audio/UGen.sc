@@ -153,19 +153,23 @@ UGen : AbstractFunction {
 		);
 		^this
 	}
-	linlin { arg inMin, inMax, outMin, outMax, clip;
-		^LinLin.multiNew(this.rate, this.prune(inMin, inMax, clip),
-						inMin, inMax, outMin, outMax)
+	linlin { arg inMin, inMax, outMin, outMax, clip = \minmax;
+		if (this.rate == \audio) {
+			^LinLin.ar(this.prune(inMin, inMax, clip), inMin, inMax, outMin, outMax)
+		} {
+			^LinLin.kr(this.prune(inMin, inMax, clip), inMin, inMax, outMin, outMax)
+		}
 	}
-	linexp { arg inMin, inMax, outMin, outMax, clip;
+
+	linexp { arg inMin, inMax, outMin, outMax, clip = \minmax;
 		^LinExp.multiNew(this.rate, this.prune(inMin, inMax, clip),
 						inMin, inMax, outMin, outMax)
 	}
-	explin { arg inMin, inMax, outMin, outMax, clip;
+	explin { arg inMin, inMax, outMin, outMax, clip = \minmax;
 		^(log(this.prune(inMin, inMax, clip)/inMin))
 			/ (log(inMax/inMin)) * (outMax-outMin) + outMin; // no separate ugen yet
 	}
-	expexp { arg inMin, inMax, outMin, outMax, clip;
+	expexp { arg inMin, inMax, outMin, outMax, clip = \minmax;
 		^pow(outMax/outMin, log(this.prune(inMin, inMax, clip)/inMin)
 			/ log(inMax/inMin)) * outMin;
 	}

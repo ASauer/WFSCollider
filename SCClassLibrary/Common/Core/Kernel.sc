@@ -214,15 +214,16 @@ Process {
 		Archive.write;
 	}
 	tick { // called repeatedly by SCVirtualMachine::doPeriodicTask
-		AppClock.tick;
+		^AppClock.tick;
 	}
 
 	*tailCallOptimize { _GetTailCallOptimize }
 	*tailCallOptimize_ { arg bool; _SetTailCallOptimize ^this.primitiveFailed }
 
 	getCurrentSelection {
-		^if(\QtGUI.asClass.notNil and: {QtGUI.focusView.notNil}) {
-			QtGUI.selectedText;
+		var qt = \QtGUI.asClass;
+		^if(qt.notNil and: {qt.focusView.notNil}) {
+			qt.selectedText;
 		} {
 			interpreter.cmdLine;
 		}

@@ -152,7 +152,9 @@ PyrProcess* newPyrProcess(VMGlobals *g, PyrClass *procclassobj)
 	PyrGC* gc = g->gc;
 	PyrProcess * proc = (PyrProcess*)instantiateObject(gc, procclassobj, 0, true, false);
 
-	PyrObject *sysSchedulerQueue = newPyrArray(gc, 1024, 0, false);
+	PyrObject *sysSchedulerQueue = newPyrArray(gc, 4096, 0, false);
+	sysSchedulerQueue->size = 1;
+	SetInt(sysSchedulerQueue->slots + 0, 0); // stability count
 	SetObject(&proc->sysSchedulerQueue, sysSchedulerQueue);
 
 	PyrObject *classVars = newPyrArray(gc, gNumClassVars, 0, false);
@@ -506,7 +508,11 @@ static inline void checkStackDepth(VMGlobals* g, PyrSlot * sp)
 #endif
 }
 
-#ifdef __GNUC__
+#if defined(__GNUC__) || defined(__INTEL_COMPILER)
+#define LABELS_AS_VALUES
+#endif
+
+#ifdef LABELS_AS_VALUES
 #define dispatch_opcode \
 	op1 = ip[1];		\
 	++ip;				\
@@ -538,7 +544,7 @@ void Interpret(VMGlobals *g)
 	PyrMethod *meth;
 	int m,mmax;
 
-#ifdef __GNUC__
+#ifdef LABELS_AS_VALUES
 	static void * opcode_labels[] = {
 		&&handle_op_0,
 		&&handle_op_1,

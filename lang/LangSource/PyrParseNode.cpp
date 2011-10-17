@@ -78,6 +78,8 @@ char overwriteMsg[OVERWRITEMSGBUFSIZE] = "";
 extern bool compilingCmdLine;
 extern int errLineOffset, errCharPosOffset;
 
+bool gPostInlineWarnings = false;
+
 const char* nodename[] = {
 	"ClassNode",
 	"ClassExtNode",
@@ -2258,12 +2260,11 @@ bool isAnInlineableBlock(PyrParseNode *node)
 		anode = (PyrPushLitNode*)node;
 		if (IsPtr(&anode->mSlot)
 				&& (bnode = (PyrBlockNode*)(slotRawPtr(&anode->mSlot)))->mClassno == pn_BlockNode) {
-			if (bnode->mArglist || bnode->mVarlist) {
+			if (gPostInlineWarnings && (bnode->mArglist || bnode->mVarlist)) {
 				post("WARNING: FunctionDef contains variable declarations and so"
 				" will not be inlined.\n");
 				if (bnode->mArglist) nodePostErrorLine((PyrParseNode*)bnode->mArglist);
 				else nodePostErrorLine((PyrParseNode*)bnode->mVarlist);
-
 			} else {
 				res = true;
 			}
@@ -2281,12 +2282,11 @@ bool isAnInlineableAtomicLiteralBlock(PyrParseNode *node)
 		anode = (PyrPushLitNode*)node;
 		if (IsPtr(&anode->mSlot)
 				&& (bnode = (PyrBlockNode*)(slotRawPtr(&anode->mSlot)))->mClassno == pn_BlockNode) {
-			if (bnode->mArglist || bnode->mVarlist) {
+			if (gPostInlineWarnings && (bnode->mArglist || bnode->mVarlist)) {
 				post("WARNING: FunctionDef contains variable declarations and so"
 				" will not be inlined.\n");
 				if (bnode->mArglist) nodePostErrorLine((PyrParseNode*)bnode->mArglist);
 				else nodePostErrorLine((PyrParseNode*)bnode->mVarlist);
-
 			} else {
 				if (bnode->mBody->mClassno == pn_DropNode && ((PyrDropNode*)bnode->mBody)->mExpr2->mClassno == pn_BlockReturnNode) {
 					res = isAtomicLiteral(((PyrDropNode*)bnode->mBody)->mExpr1);
@@ -3000,6 +3000,17 @@ void PyrBinopCallNode::compileCall(PyrSlot *result)
 				compileOpcode(opSendSpecialMsg, numArgs);
 				compileByte(index);
 				break;
+			case selUnary :
+					COMPILENODE(arg1, &dummy, false);
+					COMPILENODE(arg2, &dummy, false);
+					if (arg3)
+						COMPILENODE(arg3, &dummy, false);
+					compileTail();
+					if (arg3)
+						compileOpcode(opSpecialOpcode, opcDrop); // drop third argument
+					compileOpcode(opSpecialOpcode, opcDrop);     // drop second argument
+					compileOpcode(opSendSpecialUnaryArithMsg, index);
+				break;
 			case selBinary :
 				if (arg3) {
 					COMPILENODE(arg1, &dummy, false);
@@ -3438,7 +3449,8 @@ void compileAssignVar(PyrParseNode* node, PyrSymbol* varName, bool drop)
 						compileByte(index & 255);
 					} else {
 						compileByte(opStoreClassVar);
-						compileByte(vindex);
+						assert(false);
+						compileByte(vindex); // FIXME: vindex is not initalized!!!!
 						compileByte(index);
 						compileByte((opSpecialOpcode<<4) | opcDrop);
 					}
