@@ -42,11 +42,24 @@ for dual cores use -j4 for quad cores -j8, etc. The application will then be in 
 
 For development work do
 
-cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=ON -DCMAKE_BUILD_TYPE=Release ..
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=DEV -DCMAKE_BUILD_TYPE=Release ..
+
+For deployment to the GOL system:
+
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=GAMEOFLIFE -DCMAKE_BUILD_TYPE=Release ..
 
 For release
 
-cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='ppc;i386;x86_64' -DSC_APP_BUNDLE_LIBS ..
+With supernova:
+
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=OFFLINE -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='i386;x86_64' -DSUPERNOVA=ON -DCMAKE_OSX_SYSROOT=Developer/SDKs/MacOSX10.6.sdk ..
+
+without supernova:
+
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS_DEV=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='i386;x86_64' -DCMAKE_OSX_SYSROOT="/Developer/SDKs/MacOSX10.6.sdk" ..
+
+And until 3.5 lib bundling is fixed:
+    dylibbundler -of -b -x WFSCollider.app/Contents/MacOS/WFSCollider -p @executable_path/../Resources/ -d WFSCollider.app/Contents/Resources/
 
 ## Acknowledgments ##
 WFSCollider was conceived by the Game Of Life Foundation, and developed by W. Snoei, R. Ganchrow and J. Truetzschler and M. Negrão.
