@@ -261,25 +261,37 @@ install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/NetLib"
 )
 
 if(WFS STREQUAL "DEV")
-    message(STATUS "Creating symlink of submodules/WFS\ Library into the app bundle" )
+    message(STATUS "Creating symlink of WFSCollider submodules into the app bundle" )
     install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${PROJECT_SOURCE_DIR}/submodules/WFS Library\" 
 	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/WFS Library\" )" )
+	install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${PROJECT_SOURCE_DIR}/submodules/Unit Lib\" 
+	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Unit Lib\" )" )
 endif(WFS STREQUAL "DEV")
 if(WFS STREQUAL "OFFLINE")
-    message(STATUS "Copying WFS Library into the app bundle ") 
+    message(STATUS "Copying WFSCollider submodules into the app bundle ") 
     install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/WFS Library"
+	DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/"
+	PATTERN .git EXCLUDE
+    )
+    install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/Unit Lib"
 	DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/"
 	PATTERN .git EXCLUDE
     )
 endif(WFS STREQUAL "OFFLINE")	
 if(WFS STREQUAL "GAMEOFLIFE")
-    message(STATUS "Copying WFS Library to a folder next to the app bundle ")
+    message(STATUS "Copying WFSCollider submodules to a folder next to the app bundle ")
     install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/WFS Library"
 	DESTINATION ${scappdir}
 	PATTERN .git EXCLUDE
     )
     install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${scappdir}/WFS Library\" 
-	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/WFS Library\" )" ) 
+	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/WFS Library\" )" )
+	install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/Unit Lib"
+	DESTINATION ${scappdir}
+	PATTERN .git EXCLUDE
+    )
+    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${scappdir}/Unit Lib\" 
+	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Unit Lib\" )" )  
 endif(WFS STREQUAL "GAMEOFLIFE")	
 
 
