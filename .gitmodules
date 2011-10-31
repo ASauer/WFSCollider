@@ -14,3 +14,6 @@
 [submodule "submodules/WFS Library"]
 	path = submodules/WFS Library
 	url = git://github.com/GameOfLife/WFSCollider-Class-Library.git
+[submodule "submodules/Unit Lib"]
+	path = submodules/Unit Lib
+	url = git://github.com/GameOfLife/Unit-Lib.git
