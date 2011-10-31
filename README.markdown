@@ -29,9 +29,9 @@ Get the source:
 
 	git clone --recursive git://github.com/GameOfLife/WFSCollider.git
 
-Go to the folder created and switch to the wfscurrent branch
+Go to the folder created and switch to the wfscurrent_cmake_sample_sched branch
 
-	git checkout wfscurrent
+	git checkout wfscurrent_cmake_sample_sched
 
 then
     mkdir build
