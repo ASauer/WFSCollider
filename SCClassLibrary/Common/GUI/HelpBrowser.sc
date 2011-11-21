@@ -136,8 +136,8 @@ HelpBrowser {
 		x = x + w;
 		w = 200;
 		srchBox = TextField.new( window, Rect(x,y,w,h) ).resize_(1);
-		if(srchBox.respondsTo(\setProperty)) {
-			srchBox.setProperty(\toolTip,"Smart quick help lookup. Prefix with # to just search.");
+		if(GUI.current.id == \qt) {
+			srchBox.toolTip = "Smart quick help lookup. Prefix with # to just search.";
 		};
 		srchBox.action = {|x|
 			if(x.string.notEmpty) {
@@ -193,7 +193,8 @@ HelpBrowser {
 		if(webView.respondsTo(\setFontFamily)) {
 			webView.setFontFamily(\fixed, Platform.case(
 				\osx, { "Monaco" },
-				\linux, { "Andale Mono" }
+				\linux, { "Andale Mono" },
+				{ "Monospace" }
 			))
 		};
 
@@ -291,7 +292,7 @@ HelpBrowser {
 }
 
 + Help {
-	gui {
+	*gui {
 		HelpBrowser.instance.goHome;
 	}
 }
