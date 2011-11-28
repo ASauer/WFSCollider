@@ -11,6 +11,10 @@ The system is currently allows to import mono sound files and place them in a sc
 
 Each score can be saved as an xml file.
 
+## Getting Help ##
+
+Start WFSCollider, in the menubar go to Help->SuperColliderHelp then click on "Home" and then "WFSCollider V2.0 Overview"
+
 ## System Requirements ##
 
 Mac OS X 10.5 or greater
@@ -46,7 +50,7 @@ For development work do
 
 For deployment to the GOL system:
 
-    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=GAMEOFLIFE -DCMAKE_BUILD_TYPE=Release ..
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=GAMEOFLIFE -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_SYSROOT="/Developer/SDKs/MacOSX10.6.sdk" ..
 
 For release
 
