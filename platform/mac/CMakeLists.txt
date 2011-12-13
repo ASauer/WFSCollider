@@ -284,13 +284,13 @@ if(WFS STREQUAL "GAMEOFLIFE")
 	DESTINATION ${scappdir}
 	PATTERN .git EXCLUDE
     )
-    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${scappdir}/WFS Library\"
+    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"../../../../../WFS Library\"
 	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/WFS Library\" )" )
 	install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/Unit Lib"
 	DESTINATION ${scappdir}
 	PATTERN .git EXCLUDE
     )
-    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"${scappdir}/Unit Lib\" 
+    install( CODE "EXECUTE_PROCESS(COMMAND ln -sf \"../../../../../Unit Lib\" 
 	\"${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Unit Lib\" )" )  
 endif(WFS STREQUAL "GAMEOFLIFE")	
 

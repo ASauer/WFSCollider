@@ -62,6 +62,12 @@ without supernova:
 
     cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=OFFLINE -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='i386;x86_64' -DCMAKE_OSX_SYSROOT="/Developer/SDKs/MacOSX10.6.sdk" ..
 
+    cmake -D standalone:string=WFSCollider -DSC_QT=OFF -DWFS=OFFLINE -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES='i386;x86_64' -DCMAKE_OSX_SYSROOT="/Developer/SDKs/MacOSX10.5.sdk" ..
+
+for release this should be run on the standalone:
+WFSPrePanSynthDefs.generateAll;
+WFSPreviewSynthDefs.generateAll;
+
 And until 3.5 lib bundling is fixed:
     dylibbundler -of -b -x WFSCollider.app/Contents/MacOS/WFSCollider -p @executable_path/../Resources/ -d WFSCollider.app/Contents/Resources/
 
