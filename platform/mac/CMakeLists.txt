@@ -260,6 +260,14 @@ install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/NetLib"
     DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
 )
 
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/VectorSpace"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
+install( DIRECTORY "${PROJECT_SOURCE_DIR}/submodules/quarks/MathLib"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${scappbundlename}.app/Contents/Resources/SCClassLibrary/Extensions/Quarks"
+)
+
 if(WFS STREQUAL "DEV")
     message(STATUS "Creating symlink of WFSCollider submodules into the app bundle" )
     install( CODE "EXECUTE_PROCESS(COMMAND ln -s \"${PROJECT_SOURCE_DIR}/submodules/WFS Library\"
