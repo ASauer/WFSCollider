@@ -17,3 +17,6 @@
 [submodule "submodules/Unit Lib"]
 	path = submodules/Unit Lib
 	url = git://github.com/GameOfLife/Unit-Lib.git
+[submodule "submodules/sc3-plugins"]
+	path = submodules/sc3-plugins
+	url = git://sc3-plugins.git.sourceforge.net/gitroot/sc3-plugins/sc3-plugins
